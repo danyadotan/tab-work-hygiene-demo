@@ -29,7 +29,7 @@ export function DemoScreen() {
           title="10 agents wrote 10 client documents. TAB shows one screen."
         />
 
-        <div className="mt-12 overflow-hidden rounded-lg border border-border bg-card">
+        <div className="mt-12 overflow-hidden rounded-sm border border-border bg-card shadow-[0_1px_0_var(--border),0_12px_32px_-16px_rgb(0_0_0/0.18)]">
           <div className="flex items-center gap-3 border-b border-border px-4 py-3">
             <span className="flex gap-1.5" aria-hidden="true">
               <span className="h-2.5 w-2.5 rounded-full bg-border" />
@@ -73,7 +73,7 @@ export function DemoScreen() {
                 {needsHuman.map((n) => (
                   <li
                     key={n.c}
-                    className={`rounded-md border p-4 transition-colors duration-500 ${
+                    className={`rounded-sm border p-4 transition-colors duration-500 ${
                       done ? "border-border bg-transparent" : "border-destructive/40 bg-destructive/5"
                     }`}
                   >
@@ -115,7 +115,7 @@ export function DemoScreen() {
             {done ? (
               <button
                 onClick={() => setDone(false)}
-                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-border px-5 font-mono text-sm font-semibold transition-colors hover:bg-secondary"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-sm border border-border px-5 font-mono text-sm font-semibold transition-colors hover:bg-secondary"
               >
                 <RotateCcw className="h-4 w-4" aria-hidden="true" />
                 Replay
@@ -123,7 +123,7 @@ export function DemoScreen() {
             ) : (
               <button
                 onClick={() => setDone(true)}
-                className="inline-flex h-11 shrink-0 items-center justify-center rounded-md bg-primary px-6 font-mono text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex h-11 shrink-0 items-center justify-center rounded-sm bg-primary px-6 font-mono text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Approve &amp; close 10
               </button>

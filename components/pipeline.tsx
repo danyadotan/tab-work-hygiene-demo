@@ -59,7 +59,7 @@ export function Pipeline() {
               >
                 <span className="tnum font-mono text-sm text-primary">{l.n}</span>
                 <div className="flex flex-col gap-1.5">
-                  <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{l.t}</h3>
+                  <h3 className="font-serif text-xl font-medium tracking-tight md:text-2xl">{l.t}</h3>
                   <p className="text-pretty leading-relaxed text-muted-foreground">{l.d}</p>
                 </div>
               </div>

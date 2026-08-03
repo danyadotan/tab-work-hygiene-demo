@@ -1,62 +1,76 @@
-import { ArrowDown } from "lucide-react"
+import { SectionHead } from "@/components/section-head"
 
 const steps = [
-  "Agent outputs",
+  "Agent outputs arrive",
   "Group by client / task / outcome",
   "Semantic diff against approved version",
   "Detect material change, risk, exception",
-  "Apply policy + prior decisions",
+  "Apply policy and prior decisions",
   "Only what needs human judgment",
 ]
 
 const layers = [
   { n: "01", t: "Reduction", d: "Does this reach a human at all?" },
-  { n: "02", t: "Compression", d: "10 docs, 7 alerts, 4 approvals → one work unit." },
-  { n: "03", t: "Recovery", d: "When action is needed, deliver full context + first step ready." },
+  { n: "02", t: "Compression", d: "10 docs, 7 alerts, 4 approvals become one work unit." },
+  { n: "03", t: "Recovery", d: "When action is needed: full context, first step ready." },
   { n: "04", t: "Closure", d: "Not just approved — sent, logged, returned, closed." },
 ]
 
 export function Pipeline() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto max-w-5xl px-5 py-20">
-        <p className="font-mono text-xs uppercase tracking-widest text-primary">The solution</p>
-        <h2 className="mt-6 max-w-2xl text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-          A reduction layer between agent output and the human.
-        </h2>
+      <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <SectionHead
+          index="02"
+          label="The solution"
+          title="A reduction layer between agent output and the human."
+        />
 
-        <div className="mt-12 grid gap-12 md:grid-cols-2">
-          <div className="rounded-md border border-border bg-card p-6">
-            <p className="font-mono text-xs text-muted-foreground">pipeline</p>
-            <ol className="mt-4 space-y-0">
-              {steps.map((s, i) => (
-                <li key={s}>
-                  <div className="font-mono text-sm">{s}</div>
-                  {i < steps.length - 1 && (
-                    <ArrowDown className="my-1 h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                  )}
+        <div className="mt-14 grid gap-12 md:grid-cols-5">
+          <ol className="relative flex flex-col md:col-span-2">
+            <span className="absolute bottom-3 left-[5px] top-3 w-px bg-border" aria-hidden="true" />
+            {steps.map((s, i) => {
+              const last = i === steps.length - 1
+              return (
+                <li key={s} className="relative flex gap-4 pb-6 last:pb-0">
+                  <span
+                    className={`relative z-10 mt-1.5 h-[11px] w-[11px] shrink-0 rounded-full border-2 ${
+                      last ? "border-primary bg-primary" : "border-border bg-background"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={`font-mono text-sm leading-snug ${
+                      last ? "text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    {s}
+                  </span>
                 </li>
-              ))}
-            </ol>
-          </div>
+              )
+            })}
+          </ol>
 
-          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-md border border-border bg-border">
+          <div className="flex flex-col md:col-span-3">
             {layers.map((l) => (
-              <div key={l.n} className="bg-card p-5">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-sm text-primary">{l.n}</span>
-                  <span className="text-lg font-semibold tracking-tight">{l.t}</span>
+              <div
+                key={l.n}
+                className="group flex items-baseline gap-6 border-t border-border py-6 last:border-b"
+              >
+                <span className="tnum font-mono text-sm text-primary">{l.n}</span>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{l.t}</h3>
+                  <p className="text-pretty leading-relaxed text-muted-foreground">{l.d}</p>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{l.d}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="mt-10 max-w-3xl text-pretty font-mono text-sm leading-relaxed text-muted-foreground">
-          Identity infrastructure controls what agents <span className="text-foreground">may</span> do.
-          TAB controls how much of their output is allowed to{" "}
-          <span className="text-foreground">interrupt a human</span>.
+        <p className="mt-12 max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          Identity infrastructure controls what agents{" "}
+          <span className="text-foreground">may</span> do. TAB controls how much of their output is
+          allowed to <span className="text-primary">interrupt a human</span>.
         </p>
       </div>
     </section>

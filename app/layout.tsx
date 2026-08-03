@@ -1,10 +1,14 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Newsreader } from 'next/font/google'
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  variable: '--font-newsreader',
+  style: ['normal', 'italic'],
+})
 
 export const metadata: Metadata = {
   title: 'TAB — YC Application',
@@ -17,8 +21,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  colorScheme: 'dark',
-  themeColor: '#1a1a1e',
+  colorScheme: 'light',
+  themeColor: '#f2ecdf',
 }
 
 export default function RootLayout({
@@ -27,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark bg-background ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`bg-background ${geistSans.variable} ${newsreader.variable}`}>
       <body className="antialiased font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

@@ -17,7 +17,7 @@ export function Metrics() {
             <div key={m.n} className="border-t border-border bg-background p-0 md:border-t-0 md:p-6">
               <div className="py-6 md:py-0">
                 <span className="tnum font-mono text-xs text-primary">{m.n}</span>
-                <h3 className="mt-4 text-balance text-xl font-semibold tracking-tight md:text-2xl">
+                <h3 className="mt-4 text-balance font-serif text-xl font-medium tracking-tight md:text-2xl">
                   {m.k}
                 </h3>
                 <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">{m.v}</p>

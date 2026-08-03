@@ -16,7 +16,7 @@ export function SectionHead({
         </span>
         <span className="h-px flex-1 bg-border" />
       </div>
-      <h2 className="max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-tight md:text-[2.75rem]">
+      <h2 className="max-w-3xl text-balance font-serif text-3xl font-medium leading-[1.08] tracking-tight md:text-[2.75rem]">
         {title}
       </h2>
     </div>

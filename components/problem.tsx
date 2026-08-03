@@ -51,10 +51,10 @@ export function Problem() {
               and click. More agents means a longer approval queue — not freedom.
             </p>
 
-            <p className="border-l-2 border-primary pl-4 font-mono text-sm leading-relaxed">
+            <p className="border-l-2 border-primary pl-4 text-sm leading-relaxed text-muted-foreground">
               The metric nobody measures:{" "}
-              <span className="text-primary">Human Decision Load</span> — decisions, checks, and
-              approvals needed to close one unit of work.
+              <span className="font-serif text-base italic text-primary">Human Decision Load</span>{" "}
+              — decisions, checks, and approvals needed to close one unit of work.
             </p>
           </div>
 

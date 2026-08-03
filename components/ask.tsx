@@ -15,7 +15,7 @@ export function Ask() {
           }
         />
 
-        <blockquote className="mt-12 max-w-4xl border-l-2 border-primary pl-6 text-pretty text-xl font-medium leading-snug tracking-tight md:text-2xl">
+        <blockquote className="mt-12 max-w-4xl border-l-2 border-primary pl-6 text-pretty font-serif text-xl font-medium italic leading-snug tracking-tight md:text-[1.75rem]">
           AI agents produce more work than organizations can absorb. TAB reduces their output into
           fewer human decisions, concentrated work units, and closed operational loops.
         </blockquote>
@@ -23,13 +23,13 @@ export function Ask() {
         <div className="mt-12 flex flex-wrap gap-3">
           <a
             href="#"
-            className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-7 font-mono text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="inline-flex h-12 items-center justify-center rounded-sm bg-primary px-7 font-mono text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Book the demo
           </a>
           <a
             href="#"
-            className="inline-flex h-12 items-center justify-center rounded-md border border-border px-7 font-mono text-sm font-semibold transition-colors hover:bg-secondary"
+            className="inline-flex h-12 items-center justify-center rounded-sm border border-border px-7 font-mono text-sm font-semibold transition-colors hover:bg-secondary"
           >
             Read the memo
           </a>

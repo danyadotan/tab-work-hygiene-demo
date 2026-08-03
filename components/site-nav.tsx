@@ -8,7 +8,7 @@ export function SiteNav() {
           <Square className="h-4 w-4 fill-primary text-primary" aria-hidden="true" />
           <span className="font-mono text-sm font-semibold tracking-tight">TAB</span>
         </div>
-        <span className="font-mono text-xs text-muted-foreground">YC · S26 Application</span>
+        <span className="font-mono text-xs text-chart-2">YC · S26 Application</span>
       </div>
     </header>
   )

@@ -7,7 +7,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 grid-rule fade-bottom opacity-40"
         aria-hidden="true"
       />
-      <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-16 md:pb-24 md:pt-24">
+      <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-16 md:pb-24 md:pt-24 text-card-foreground">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
           Human Decision Load — infrastructure
         </p>
@@ -18,7 +18,7 @@ export function Hero() {
           than humans can absorb.
         </h1>
 
-        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed md:text-xl">
           TAB is the reduction layer between agent output and the person accountable for it.
           Fewer decisions. Concentrated work units. Closed loops.
         </p>

@@ -4,7 +4,7 @@ export function SiteNav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <span className="font-serif text-2xl font-semibold tracking-tight">Tab.</span>
         <span className="stamp inline-block px-2.5 py-1 text-[11px] font-semibold uppercase">
-          YC · S26 Application
+          OpenAI Pioneers
         </span>
       </div>
     </header>

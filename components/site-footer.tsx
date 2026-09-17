@@ -4,7 +4,7 @@ export function SiteFooter() {
       <span className="font-mono text-xs text-muted-foreground">
         TAB — reduce · compress · recover · close
       </span>
-      <span className="font-mono text-xs text-muted-foreground">Y Combinator · S26</span>
+      <span className="font-mono text-xs text-muted-foreground">OpenAI Pioneers</span>
     </footer>
   )
 }

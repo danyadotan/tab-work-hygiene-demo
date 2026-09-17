@@ -11,7 +11,7 @@ const newsreader = Newsreader({
 })
 
 export const metadata: Metadata = {
-  title: 'TAB — YC Application',
+  title: 'TAB — OpenAI Pioneers Application',
   description:
     'TAB reduces AI agent output into fewer human decisions, concentrated work units, and closed loops.',
   generator: 'v0.app',

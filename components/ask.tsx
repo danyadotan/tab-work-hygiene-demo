@@ -4,13 +4,18 @@ export function Ask() {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <SectionHead index="05" label="The ask" title="Build agents that can finish what they start." />
+        <SectionHead index="06" label="The thesis" title="Human-in-command, without the human-as-bottleneck." />
         <blockquote className="mt-12 max-w-4xl border-l-2 border-primary pl-6 text-pretty font-serif text-xl font-medium italic leading-snug tracking-tight md:text-[1.75rem]">
-          TAB@Work makes execution reliability measurable: preserve intent, respect authority, recover safely, and verify closure against a unified source of truth.
+          TAB@Work asks what changes when we evaluate AI systems not by how convincingly they respond, but by how reliably they carry human intent through a real workflow to verified completion.
         </blockquote>
-        <div className="mt-12 flex flex-wrap gap-3">
-          <a href="#demo" className="inline-flex h-12 items-center justify-center rounded-sm bg-primary px-7 font-mono text-sm font-semibold text-primary-foreground hover:opacity-90">Run the eval</a>
-          <a href="#benchmark" className="inline-flex h-12 items-center justify-center rounded-sm border border-border px-7 font-mono text-sm font-semibold hover:bg-secondary">Read the framework</a>
+        <div className="mt-10 flex flex-col gap-2 font-mono text-sm text-muted-foreground">
+          <p>Harness produces evidence.</p>
+          <p>Hygiene consumes evidence.</p>
+          <p>Completion is a verified state, not a model claim.</p>
+        </div>
+        <div className="mt-10 flex flex-col gap-3 font-mono text-sm">
+          <a className="w-fit text-primary underline-offset-4 hover:underline" href="https://github.com/danyadotan/execution-hygiene-agent">View Execution Hygiene Agent →</a>
+          <a className="w-fit text-primary underline-offset-4 hover:underline" href="https://github.com/danyadotan/tab-work-hygiene-demo">View this demo on GitHub →</a>
         </div>
       </div>
     </section>

@@ -11,9 +11,9 @@ const newsreader = Newsreader({
 })
 
 export const metadata: Metadata = {
-  title: 'TAB — OpenAI Pioneers Application',
+  title: 'TAB@Work — Execution Reliability Eval',
   description:
-    'TAB reduces AI agent output into fewer human decisions, concentrated work units, and closed loops.',
+    'OpenAI Pioneers demo of a four-stage execution-reliability loop for benchmarking whether agentic workflows preserve intent, respect authority, recover safely, and reach verified closure against a unified source of truth.',
   generator: 'v0.app',
 }
 

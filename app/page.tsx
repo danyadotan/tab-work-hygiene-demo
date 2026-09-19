@@ -9,15 +9,17 @@ import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
+    <>
       <SiteNav />
-      <Hero />
-      <Problem />
-      <Pipeline />
-      <DemoScreen />
-      <Metrics />
-      <Ask />
+      <main>
+        <Hero />
+        <Problem />
+        <Pipeline />
+        <div id="demo"><DemoScreen /></div>
+        <div id="benchmark"><Metrics /></div>
+        <Ask />
+      </main>
       <SiteFooter />
-    </main>
+    </>
   )
 }

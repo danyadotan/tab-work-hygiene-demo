@@ -1,10 +1,10 @@
 import { SectionHead } from "@/components/section-head"
 
 const stages = [
-  ["01", "Harness", "Defines the task, permitted tools, checkpoints, and success conditions."],
-  ["02", "Hygiene", "Preserves intent, context, provenance, and the minimal state needed to continue."],
-  ["03", "Human Judgment", "Routes only consequential decisions to the right person with enough context to act."],
-  ["04", "Governed Execution + Verified Closure", "Executes within authority, verifies the external state, and returns the result to the source of truth."],
+  ["01", "Harness", "Verify before attention. Runs workflow evals, model checks, specification tests, browser/system verification, expected-state validation, and source-of-truth comparison before generated work consumes human attention."],
+  ["02", "Hygiene", "Reduce before interruption. Consumes evidence and applies policy, materiality, prior decisions, and authority boundaries to determine what actually deserves human attention."],
+  ["03", "Human Judgment", "Preserve authority. Only decisions requiring genuine judgment, accountability, preference, risk acceptance, or explicit authority reach the human."],
+  ["04", "Governed Execution + Verified Closure", "Execute, recover, verify. Perform only authorized actions, preserve state across handoffs and interruptions, prevent duplicate execution, and verify the final external state against the source of truth."],
 ]
 
 export function Pipeline() {
@@ -27,6 +27,7 @@ export function Pipeline() {
           This is the bridge between model capability and organizational trust.
         </p>
 
+        <UnifiedSourceOfTruth />
         <ReliabilityLoop />
         <ExternalConvergence />
       </div>
@@ -51,7 +52,7 @@ function ExternalConvergence() {
       <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
         <div className="max-w-sm shrink-0">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
-            External convergence — adaptive agents
+            External convergence · selective intervention
           </p>
           <h2 id="external-convergence-title" className="mt-3 font-serif text-2xl leading-tight tracking-tight md:text-3xl">
             AI is moving from answering questions to deciding when intervention is actually useful.
@@ -103,6 +104,23 @@ function ExternalConvergence() {
         </div>
       </div>
     </aside>
+  )
+}
+
+function UnifiedSourceOfTruth() {
+  const state = ["Intent", "Current mission state", "Approved baselines", "Policies + permissions", "Prior decisions", "Dependencies", "Completed actions", "Open actions", "Evidence", "Expected final state"]
+
+  return (
+    <div className="mt-10 border border-primary/40 bg-card p-6 md:p-8">
+      <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+        <p className="font-mono text-xs uppercase tracking-widest text-primary">Unified source of truth</p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">persistent · stateful · recoverable</p>
+      </div>
+      <div className="mt-6 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-5">
+        {state.map((item) => <span key={item} className="border-l border-border pl-3 text-xs leading-relaxed text-muted-foreground">{item}</span>)}
+      </div>
+      <p className="mt-6 border-t border-border pt-4 font-mono text-xs text-muted-foreground">All four stages read from and write to this shared state. Verified state becomes the next recoverable state.</p>
+    </div>
   )
 }
 

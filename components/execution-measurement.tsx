@@ -57,7 +57,7 @@ export function ExecutionMeasurement() {
   const result = useMemo(() => {
     const vcr = values.workflowsAttempted > 0 ? values.workflowsVerifiedClosed / values.workflowsAttempted : null
     const model = values.modelCalls * values.averageModelCallCost
-    const tools = values.toolCalls * values.averageToolCost
+    const tools = values.toolCalls * values.averageToolCallCost
     const retries = values.retries * values.averageRetryCost
     const recovery = values.recoveryOperations * values.averageRecoveryCost
     const duplicates = values.duplicateActions * values.averageDuplicateCost

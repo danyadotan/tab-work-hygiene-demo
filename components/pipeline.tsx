@@ -29,13 +29,12 @@ export function Pipeline() {
 
         <UnifiedSourceOfTruth />
         <ReliabilityLoop />
-        <ExternalConvergence />
       </div>
     </section>
   )
 }
 
-function ExternalConvergence() {
+export function ExternalConvergence() {
   const pattern = [
     "Context",
     "Detect relevant change",
@@ -132,7 +131,7 @@ export function ReliabilityLoop() {
         {[
           "Intent enters",
           "Harness verifies",
-          "Hygiene preserves",
+          "Hygiene reduces",
           "Human judgment authorizes",
           "Governed execution acts",
           "Source-of-truth verification",

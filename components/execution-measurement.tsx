@@ -4,8 +4,8 @@ import { useMemo, useState } from "react"
 import { SectionHead } from "@/components/section-head"
 
 const initial = {
-  workflowsAttempted: 10,
-  workflowsVerifiedClosed: 10,
+  workflowsAttempted: 1,
+  workflowsVerifiedClosed: 1,
   modelCalls: 20,
   averageModelCallCost: 0.02,
   toolCalls: 10,
@@ -44,12 +44,20 @@ const fields: Field[] = [
 
 const money = (value: number | null) => value === null ? "N/A" : `$${value.toFixed(2)}`
 
+function formatVcr(value: number | null) {
+  if (value === null) return "N/A"
+  const percentage = value * 100
+  if (percentage === 100) return "100%"
+  if (percentage === 0) return "0%"
+  return `${percentage.toFixed(1)}%`
+}
+
 export function ExecutionMeasurement() {
   const [values, setValues] = useState<Assumptions>(initial)
   const result = useMemo(() => {
-    const vcr = values.workflowsAttempted > 0 ? values.workflowsVerifiedClosed / values.workflowsAttempted : 0
+    const vcr = values.workflowsAttempted > 0 ? values.workflowsVerifiedClosed / values.workflowsAttempted : null
     const model = values.modelCalls * values.averageModelCallCost
-    const tools = values.toolCalls * values.averageToolCallCost
+    const tools = values.toolCalls * values.averageToolCost
     const retries = values.retries * values.averageRetryCost
     const recovery = values.recoveryOperations * values.averageRecoveryCost
     const duplicates = values.duplicateActions * values.averageDuplicateCost
@@ -62,7 +70,24 @@ export function ExecutionMeasurement() {
 
   function update(key: keyof Assumptions, raw: string) {
     const number = Math.max(0, Number(raw) || 0)
-    setValues((current) => ({ ...current, [key]: number }))
+    setValues((current) => {
+      if (key === "workflowsAttempted") {
+        return {
+          ...current,
+          workflowsAttempted: number,
+          workflowsVerifiedClosed: Math.min(current.workflowsVerifiedClosed, number),
+        }
+      }
+
+      if (key === "workflowsVerifiedClosed") {
+        return {
+          ...current,
+          workflowsVerifiedClosed: Math.min(number, current.workflowsAttempted),
+        }
+      }
+
+      return { ...current, [key]: number }
+    })
   }
 
   return (
@@ -78,7 +103,7 @@ export function ExecutionMeasurement() {
           <article className="bg-card p-6 md:p-8">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">RELIABILITY — VERIFIED CLOSURE</p>
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
-              <Metric label="VCR" value={`${(result.vcr * 100).toFixed(0)}%`} />
+              <Metric label="VCR" value={formatVcr(result.vcr)} />
               <Metric label="Verified closed" value={`${values.workflowsVerifiedClosed} / ${values.workflowsAttempted}`} />
               <Metric label="Human decisions" value="1" />
             </div>
@@ -111,9 +136,9 @@ export function ExecutionMeasurement() {
           <div className="border border-border bg-card p-5 md:p-6">
             <div className="flex items-baseline justify-between gap-4"><p className="font-mono text-xs uppercase tracking-widest text-primary">DEMO_ASSUMPTIONS</p><p className="font-mono text-[10px] text-muted-foreground">editable inputs</p></div>
             <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
-              {fields.map((field) => <label key={field.key} className="flex min-w-0 flex-col gap-1 font-mono text-[10px] uppercase tracking-wide text-muted-foreground"><span className="truncate">{field.label}</span><input aria-label={field.label} type="number" min="0" step={field.step} value={values[field.key]} onChange={(event) => update(field.key, event.target.value)} className="min-h-11 w-full border border-input bg-background px-2 text-base text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary" /></label>)}
+              {fields.map((field) => <label key={field.key} className="flex min-w-0 flex-col gap-1 font-mono text-[10px] uppercase tracking-wide text-muted-foreground"><span className="truncate">{field.label}</span><input aria-label={field.label} type="number" min="0" max={field.key === "workflowsVerifiedClosed" ? values.workflowsAttempted : undefined} step={field.step} value={values[field.key]} onChange={(event) => update(field.key, event.target.value)} className="min-h-11 w-full border border-input bg-background px-2 text-base text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary" /></label>)}
             </div>
-            <div className="mt-6 grid gap-2 border-t border-border pt-4 font-mono text-xs"><span>Total workflow cost <strong className="float-right font-normal text-primary">{money(result.total)}</strong></span><span>VCR <strong className="float-right font-normal text-primary">{(result.vcr * 100).toFixed(0)}%</strong></span></div>
+            <div className="mt-6 grid gap-2 border-t border-border pt-4 font-mono text-xs"><span>Total workflow cost <strong className="float-right font-normal text-primary">{money(result.total)}</strong></span><span>VCR <strong className="float-right font-normal text-primary">{formatVcr(result.vcr)}</strong></span></div>
           </div>
         </div>
 
@@ -131,4 +156,3 @@ export function ExecutionMeasurement() {
 function Metric({ label, value, accent = false }: { label: string; value: string; accent?: boolean }) {
   return <div><p className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</p><p className={`mt-1 text-lg ${accent ? "text-primary" : "text-foreground"}`}>{value}</p></div>
 }
-

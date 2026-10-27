@@ -1,6 +1,6 @@
 # TAB@Work — Execution Reliability
 
-### OpenAI Pioneers Demo
+### Entrepreneurs First · Fulcrum Demo
 
 AI can generate work faster than humans can review it.
 

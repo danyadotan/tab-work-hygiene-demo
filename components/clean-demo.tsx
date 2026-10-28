@@ -9,6 +9,8 @@ const documents = Array.from({ length: 10 }, (_, i) => ({
   baseline: "approved-v3",
   finding: i === 8 ? "tone" : i === 9 ? "authority" : "match",
 }))
+const AUTHORIZED_VERSION = "approved-v3+A-001"
+const sentVersion = (d: (typeof documents)[number]) => d.finding === "authority" ? AUTHORIZED_VERSION : d.baseline
 const buttonClass = "inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-40"
 
 export function CleanDemo() {
@@ -21,7 +23,7 @@ export function CleanDemo() {
   const authorized = ["authorized", "executed", "verified", "blocked"].includes(stage)
   const executed = ["executed", "verified", "blocked"].includes(stage)
   const passed = documents.filter(d => d.finding === "match")
-  const expected = documents.map(d => `${d.id}:sent:approved-v3`)
+  const expected = documents.map(d => `${d.id}:sent:${sentVersion(d)}`)
   const addEvent = (event: string) => setEvents(previous => [...previous, event])
   function reset() {
     setStage("ready"); setToneResolved(false); setMismatch(false); setRecord([]); setEvents([])
@@ -35,7 +37,7 @@ export function CleanDemo() {
   function verify() {
     if (stage !== "executed") return
     const matches = expected.every((entry, i) => record[i] === entry) && record.length === expected.length
-    addEvent(matches ? "10 fixture receipts match expected document IDs, sent status and approved version." : "DOC-10 receipt is pending. Closure blocked; no resend attempted.")
+    addEvent(matches ? "10 fixture receipts match expected document IDs, sent status and version: approved-v3, plus approved-v3+A-001 for DOC-10." : "DOC-10 receipt is pending. Closure blocked; no resend attempted.")
     setStage(matches ? "verified" : "blocked")
   }
   return (
@@ -79,7 +81,7 @@ export function CleanDemo() {
               <h3 className="font-semibold">Client A · authority required</h3>
               <p className="mt-2 text-sm">Approved: no guaranteed response time. Draft adds: “We guarantee a response within 4 hours.”</p>
               <p className="mt-2 text-sm text-muted-foreground">Scope: authorize this exact commitment for Client A in M-001 only. No blanket permission for future SLAs.</p>
-              {stage === "review" ? <button disabled={!toneResolved} className={`${buttonClass} mt-3`} onClick={() => { if (!toneResolved) return; setStage("authorized"); addEvent("A-001: presenter explicitly authorized Client A 4-hour SLA for M-001 only.") }}>Authorize Client A SLA</button> : <p className="mt-3 text-sm text-primary">{authorized ? "A-001 recorded in this run." : "Authorization pending."}</p>}
+              {stage === "review" ? <button disabled={!toneResolved} className={`${buttonClass} mt-3`} onClick={() => { if (!toneResolved) return; setStage("authorized"); addEvent("A-001: presenter explicitly authorized Client A 4-hour SLA for M-001 only. DOC-10 final version: approved-v3+A-001.") }}>Authorize Client A SLA</button> : <p className="mt-3 text-sm text-primary">{authorized ? "A-001 recorded in this run." : "Authorization pending."}</p>}
               {!toneResolved && <p className="mt-2 text-xs text-muted-foreground">Resolve the tone exception first.</p>}
             </div>
           </div>

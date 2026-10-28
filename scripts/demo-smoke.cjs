@@ -1,4 +1,7 @@
-// Uses Playwright from the environment; no application dependency required.
+// Playwright is intentionally not an app dependency. Install it outside the app, e.g.:
+//   npm install --prefix /tmp/pw playwright && npx --prefix /tmp/pw playwright install chromium
+//   npm run build && npm start   # in another shell
+//   NODE_PATH=/tmp/pw/node_modules node scripts/demo-smoke.cjs
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 (async () => {
@@ -17,6 +20,9 @@ const assert = require('node:assert/strict');
   assert.match(await page.getByRole('status').innerText(),/Closure awaits/);
   await page.getByRole('button',{name:'Compare fixture receipts',exact:true}).click();
   assert.match(await page.getByRole('status').innerText(),/Verified closure in simulation: 10 \/ 10/);
+  const verifiedRecord = await page.getByLabel('Fixture delivery record').textContent();
+  assert.match(verifiedRecord,/^DOC-09:sent:approved-v3$/m);
+  assert.match(verifiedRecord,/^DOC-10:sent:approved-v3\+A-001$/m);
   await page.screenshot({path:'/tmp/bouncer-verified.png',fullPage:true});
   await page.getByRole('button',{name:'Reset demo',exact:true}).click();
   await page.getByRole('button',{name:'Check ten outputs',exact:true}).click();

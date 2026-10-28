@@ -41,6 +41,16 @@ The narration is a rehearsal script, not a claim of a timed recording. Practice 
 
 Reset. Check outputs. Restore tone. Authorize SLA. Expand **Run record and verification drill**, select missing receipt, run delivery, compare. Expect **Closure blocked: 9 / 10** and DOC-10 pending. No resend is attempted. Reset again before the main take.
 
+## Automated smoke test
+
+`scripts/demo-smoke.cjs` drives `/demo` with Playwright, which is deliberately not an application dependency. Install it outside the app, start the production build, then run the script:
+
+```bash
+npm install --prefix /tmp/pw playwright && npx --prefix /tmp/pw playwright install chromium
+npm run build && npm start   # separate shell
+NODE_PATH=/tmp/pw/node_modules node scripts/demo-smoke.cjs   # DEMO_URL overrides http://localhost:3000/demo
+```
+
 ## Fulcrum requirements verified
 
 Acceptance email dated 26 October (also a matching 22 October email) requires:
